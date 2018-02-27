@@ -1,3 +1,5 @@
+package cv2;
+
 class Vlakno {
 	private int cisloVlakna;
 	private int pocetClenu;
@@ -28,7 +30,7 @@ class Vlakno {
 			
 			aktualniClen++;
 		}
-		System.out.println("Vlakno " + cisloVlakna + " ma soucet: " + soucet);
+		System.out.println("cv2.Vlakno " + cisloVlakna + " ma soucet: " + soucet);
 	}	
 }
 
