@@ -1,9 +1,10 @@
 package cv2;
 
 class Bariera {
-	int citac = 0;
-	int pocetVlaken;
-	double suma = 0;
+	private int citac = 0;
+	private int pocetVlaken;
+	private double suma = 0;
+	private boolean uspat = true;
 
 	public Bariera(int pocetVlaken) {
 		this.pocetVlaken = pocetVlaken;
@@ -32,7 +33,43 @@ class Bariera {
 	}
 
 	public synchronized void synchronizuj2(Vlakno v) {
+		suma += v.getSoucet();
 
+		while (!uspat) {
+			try {
+				wait();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+
+		citac++;
+
+		if (citac == pocetVlaken) {
+			System.out.println("Cislo pi po souctu " + v.getAktualniClen() * pocetVlaken + " prvku = " + suma);
+
+			suma = 0;
+
+			uspat = false;
+
+			notifyAll();
+		}
+
+		while (uspat) {
+			try {
+				wait();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+
+		citac--;
+
+		if (citac == 0) {
+			uspat = true;
+
+			notifyAll();
+		}
 	}
 }
 
