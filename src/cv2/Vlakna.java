@@ -29,7 +29,6 @@ class Bariera {
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 	public synchronized void synchronizuj2(Vlakno v) {
