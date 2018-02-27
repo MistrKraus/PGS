@@ -10,7 +10,7 @@ class Bariera {
 		this.pocetVlaken = pocetVlaken;
 	}
 
-	public synchronized void synchorinizuj(Vlakno v) {
+	public synchronized void synchronizuj(Vlakno v) {
 		suma += v.getSoucet();
 		citac++;
 
@@ -109,7 +109,7 @@ class Vlakno extends Thread {
 		aktualniClen++;
 
 		if (aktualniClen % synchronizace == 0) {
-			bariera.synchorinizuj(this);
+			bariera.synchronizuj2(this);
 		}
 
 		while (aktualniClen < pocetClenu) {
@@ -117,6 +117,8 @@ class Vlakno extends Thread {
 			soucet += Math.pow(-1, index) / (2 * cisloVlakna + 1 + 2 * pocetVlaken * aktualniClen);
 
 			aktualniClen++;
+			if (aktualniClen % synchronizace == 0)
+				bariera.synchronizuj2(this);
 		}
 		System.out.println("cv2.Vlakno " + cisloVlakna + " ma soucet: " + soucet);
 	}
