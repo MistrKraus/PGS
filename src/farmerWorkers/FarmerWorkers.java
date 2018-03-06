@@ -13,7 +13,14 @@ public class FarmerWorkers {
 		System.out.println("Main - spoustim farmare.");
 		Farmer farmer = new Farmer(INPUT_FILE_NAME);
 		
-		farmer.compute();
+//		farmer.compute();
+		farmer.start();
+
+		try {
+			farmer.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		
 		System.out.println("Main - konci.");
 	}
