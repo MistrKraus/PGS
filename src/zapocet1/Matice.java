@@ -20,15 +20,15 @@ class Matrix {
 		}
 
 		switch (file) {
-		case "matrixS.dat":
-			size = 10;
-			break;
-		case "matrixM.dat":
-			size = 100;
-			break;
-		case "matrixL.dat":
-			size = 1000;
-			break;
+			case "matrixS.dat":
+				size = 10;
+				break;
+			case "matrixM.dat":
+				size = 100;
+				break;
+			case "matrixL.dat":
+				size = 1000;
+				break;
 		}
 
 		matice = new int[size][size];
